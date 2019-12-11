@@ -15,14 +15,14 @@ cd oep
 ######################
 ##   Running test  ##
 ######################
-test_name=consul-health-check
+test_name=configs-db-health-check
 echo $test_name
 kubectl get po
-sed -i -e 's/generateName: app-check/generateName: consul-health-check/g' \
--e 's/app: app-litmus/app: consul-health-check-litmus/g' \
--e 's/value: test-name/value: consul-health-check/g' \
+sed -i -e 's/generateName: app-check/generateName: configs-db-health-check/g' \
+-e 's/app: app-litmus/app: configs-db-health-check-litmus/g' \
+-e 's/value: test-name/value: configs-db-health-check/g' \
 -e 's/value: default /value: default/g' \
--e 's/value: pod-name/value: consul/g' litmus/director/common-checks/run_litmus_test.yml
+-e 's/value: pod-name/value: configs-db/g' litmus/director/common-checks/run_litmus_test.yml
 cat litmus/director/common-checks/run_litmus_test.yml
 kubectl create -f litmus/director/common-checks/run_litmus_test.yml
 litmus_pod=$(kubectl get po -n litmus | grep $test_name  | awk {'print $1'} | tail -n 1)
