@@ -11,7 +11,7 @@ stages:
 
 ## Setup the kubernetes cluster
 cluster-create:
-  image: atulabhi/kops:v8
+  image: harshshekhar15/kops:v1.15
   stage: CLUSTER-SETUP
   script: 
     - chmod 755 ./stages/1-cluster-setup/gcp
@@ -314,7 +314,7 @@ dmaas-check:
 ## cluster cleanup
 cluster-cleanup:
   when: always
-  image: atulabhi/kops:v8
+  image: harshshekhar15/kops:v1.15
   dependencies:
     - cluster-create
   stage: CLUSTER-CLEANUP
